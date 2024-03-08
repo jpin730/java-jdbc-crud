@@ -15,7 +15,7 @@ public class EmployeeRepository implements Repository<Employee> {
     @Override
     public List<Employee> findAll() throws SQLException {
         List<Employee> employees = new ArrayList<>();
-        try (Connection conn = getConnection(); Statement stmt = conn.createStatement();
+        try (Statement stmt = getConnection().createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM employees")) {
 
             while (rs.next()) {
@@ -44,8 +44,16 @@ public class EmployeeRepository implements Repository<Employee> {
     }
 
     @Override
-    public void save(Employee employee) {
-
+    public void save(Employee employee) throws SQLException {
+        String sql = "INSERT INTO employees (first_name, pa_surname, ma_surname, email, salary) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
+            ps.setString(1, employee.getFirst_name());
+            ps.setString(2, employee.getPa_surname());
+            ps.setString(3, employee.getMa_surname());
+            ps.setString(4, employee.getEmail());
+            ps.setFloat(5, employee.getSalary());
+            ps.executeUpdate();
+        }
     }
 
     @Override
