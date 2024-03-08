@@ -1,6 +1,6 @@
 # Java JDBC CRUD
 
-This is a simple Java JDBC CRUD application. It is a console application that connects to a MySQL database and performs CRUD operations.
+This is a simple Java JDBC (Java Database Connectivity) CRUD application. It uses a MySQL database and Swing for the GUI.
 
 ## Prepare database
 
