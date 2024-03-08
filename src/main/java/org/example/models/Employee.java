@@ -3,22 +3,13 @@ package org.example.models;
 public class Employee {
     private Integer id;
     private String first_name;
-    private String pa_surname;
-    private String ma_surname;
+    private String last_name;
     private String email;
     private Float salary;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String first_name, String pa_surname, String ma_surname, String email, Float salary) {
-        this.id = id;
-        this.first_name = first_name;
-        this.pa_surname = pa_surname;
-        this.ma_surname = ma_surname;
-        this.email = email;
-        this.salary = salary;
-    }
 
     public Integer getId() {
         return id;
@@ -36,20 +27,12 @@ public class Employee {
         this.first_name = first_name;
     }
 
-    public String getPa_surname() {
-        return pa_surname;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setPa_surname(String pa_surname) {
-        this.pa_surname = pa_surname;
-    }
-
-    public String getMa_surname() {
-        return ma_surname;
-    }
-
-    public void setMa_surname(String ma_surname) {
-        this.ma_surname = ma_surname;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getEmail() {
@@ -70,11 +53,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Empoyee{" +
+        return "Employee{" +
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
-                ", pa_surname='" + pa_surname + '\'' +
-                ", ma_surname='" + ma_surname + '\'' +
+                ", pa_surname='" + last_name + '\'' +
                 ", email='" + email + '\'' +
                 ", salary=" + salary +
                 '}';
