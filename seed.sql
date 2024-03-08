@@ -1,10 +1,10 @@
 USE db;
 DROP TABLE IF EXISTS employees;
 CREATE TABLE `employees` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id` int(11) NOT NULL AUTO_INCREMENT UNIQUE,
     `first_name` varchar(64) DEFAULT NULL,
     `last_name` varchar(64) DEFAULT NULL,
-    `email` varchar(64) DEFAULT NULL,
+    `email` varchar(64) DEFAULT NULL UNIQUE,
     `salary` DECIMAL (10, 2) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = latin1;
