@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class SwingApp extends JFrame {
@@ -91,14 +92,14 @@ public class SwingApp extends JFrame {
         JTextField emailField = new JTextField();
         JTextField salaryField = new JTextField();
 
-        Object[] message = {
+        Object[] fields = {
                 "First Name:", firstNameField,
                 "Last Name:", lastNameField,
                 "Email:", emailField,
                 "Salary:", salaryField
         };
 
-        int result = JOptionPane.showConfirmDialog(this, message, "Add Employee", JOptionPane.OK_CANCEL_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, fields, "Add Employee", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             Employee employee = new Employee();
@@ -113,7 +114,14 @@ public class SwingApp extends JFrame {
                 return;
             }
 
-            employeeRepository.save(employee);
+            try {
+                employeeRepository.save(employee);
+            } catch (SQLIntegrityConstraintViolationException e) {
+                String message = e.getMessage();
+                JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             refreshEmployeeTable();
 
             JOptionPane.showMessageDialog(this, "Employee added successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -135,14 +143,14 @@ public class SwingApp extends JFrame {
         JTextField emailField = new JTextField(employee.getEmail());
         JTextField salaryField = new JTextField(employee.getSalary().toString());
 
-        Object[] message = {
+        Object[] fields = {
                 "First Name:", firstNameField,
                 "Last Name:", lastNameField,
                 "Email:", emailField,
                 "Salary:", salaryField
         };
 
-        int result = JOptionPane.showConfirmDialog(this, message, "Update Employee", JOptionPane.OK_CANCEL_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, fields, "Update Employee", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             employee.setFirst_name(firstNameField.getText());
@@ -156,7 +164,14 @@ public class SwingApp extends JFrame {
                 return;
             }
 
-            employeeRepository.save(employee);
+            try {
+                employeeRepository.save(employee);
+            } catch (SQLIntegrityConstraintViolationException e) {
+                String message = e.getMessage();
+                JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             refreshEmployeeTable();
 
             JOptionPane.showMessageDialog(this, "Employee updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
