@@ -32,6 +32,7 @@ public class Main {
             System.out.println();
 
             employee.setFirst_name("John");
+            employee.setSalary(2000.0f);
             repository.save(employee);
 
             System.out.println("Employee updated:");
@@ -40,8 +41,15 @@ public class Main {
 
             System.out.println("All employees:");
             repository.findAll().forEach(System.out::println);
+            System.out.println();
+
+            System.out.println("Deleting employee with id " + id + ":");
+            System.out.println();
+            repository.delete(id);
+
+            System.out.println("All employees:");
+            repository.findAll().forEach(System.out::println);
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("An error occurred on main");
         }
     }
