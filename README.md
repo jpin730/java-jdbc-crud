@@ -1,6 +1,6 @@
 # Java JDBC CRUD
 
-This is a simple Java JDBC (Java Database Connectivity) CRUD application. It uses a MySQL database and Swing for the GUI. It implements the ACID principles for database transactions and connection pooling for performance.
+This is a simple Java JDBC (Java Database Connection) CRUD application. It uses a MySQL database and Swing for the GUI. It implements the ACID principles for database transactions and connection pooling for performance.
 
 ## Prepare database
 
